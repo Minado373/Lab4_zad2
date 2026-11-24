@@ -42,6 +42,7 @@ app.use(express.json());
 
 // TODO: 4_2 - Jokebook
 
+// Com4_2.1be
 app.get("/jokebook/categories", (req, res) => {
   res.json(categories);
 });
@@ -73,6 +74,25 @@ app.get("/jokebook/jokes", (req, res) => {
     funnyJoke,
     lameJoke,
   });
+});
+
+// Com4_2.2be
+app.post("/jokebook/joke/:category", (req, res) => {
+  const category = req.params.category;
+  const { joke, response } = req.body;
+  if (!category || !joke || !response) {
+    return res.status(400).json({ error: "Invalid input" });
+  }
+
+  if (category === "lameJoke") {
+    lameJoke.push({ joke, response });
+    res.json({ joke, response });
+  } else if (category === "funnyJoke") {
+    funnyJoke.push({ joke, response });
+    res.json({ joke, response });
+  } else {
+    return res.status(400).json({ error: `no jokes for category ${category}` });
+  }
 });
 
 // TODO: 4_3 - CORS

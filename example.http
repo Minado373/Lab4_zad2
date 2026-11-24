@@ -5,3 +5,27 @@ GET http://localhost:3000/joke/lameJoke HTTP/1.1
 GET http://localhost:3000/joke/abc HTTP/1.1
 
 GET http://localhost:3000/jokebook/jokes HTTP/1.1
+
+POST http://localhost:3000/jokebook/joke/lameJoke HTTP/1.1
+Content-Type: application/json
+
+{
+    "joke": "Jakis zart?",
+    "response": "Jakas odpowiedz?"
+}
+
+POST http://localhost:3000/jokebook/joke/funnyJoke HTTP/1.1
+Content-Type: application/json
+
+{
+    "joke": "Jakis zart?",
+    "response": "Jakas odpowiedz?"
+}
+
+POST http://localhost:3000/jokebook/joke/abc HTTP/1.1
+Content-Type: application/json
+
+{
+    "joke": "Jakis zart?",
+    "response": "Jakas odpowiedz?"
+}
