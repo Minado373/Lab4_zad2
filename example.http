@@ -29,3 +29,6 @@ Content-Type: application/json
     "joke": "Jakis zart?",
     "response": "Jakas odpowiedz?"
 }
+
+
+GET http://localhost:3000/randomJoke HTTP/1.1

@@ -36,9 +36,17 @@ let lameJoke = [
 ];
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
+
+// TODO: 4_3 - CORS
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500",
+  }),
+);
 
 // TODO: 4_2 - Jokebook
 
@@ -69,6 +77,19 @@ app.get("/joke/:category", (req, res) => {
   res.json(jokes[randomJoke]);
 });
 
+app.get("/randomJoke", (req, res) => {
+  const categoryIndex = Math.floor(Math.random() * categories.length);
+  const category = categories[categoryIndex];
+
+  if (category === "lameJoke") {
+    const randomJoke = Math.floor(Math.random() * lameJoke.length);
+    res.json(lameJoke[randomJoke]);
+  } else {
+    const randomJoke = Math.floor(Math.random() * funnyJoke.length);
+    res.json(funnyJoke[randomJoke]);
+  }
+});
+
 app.get("/jokebook/jokes", (req, res) => {
   res.json({
     funnyJoke,
@@ -94,8 +115,6 @@ app.post("/jokebook/joke/:category", (req, res) => {
     return res.status(400).json({ error: `no jokes for category ${category}` });
   }
 });
-
-// TODO: 4_3 - CORS
 
 const PORT = process.env.PORT || 3000;
 
